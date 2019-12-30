@@ -34,7 +34,7 @@ topic-with-one-partition
 ```
 > bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic topic-with-one-partition --from-beginning --group group-1
 ```
-- describe the group just created
+- describe the group just created (watch out CONSUMER-ID column!!)
 ```
 > bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --group group-1
 
@@ -70,7 +70,7 @@ topic-with-two-partitions
 ```
 > bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic topic-with-two-partitions --from-beginning --group group-1
 ```
-- describe the group just created
+- describe the group just created (watch out CONSUMER-ID column!!)
 ```
 > bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --group group-1
 
@@ -100,7 +100,7 @@ group-1         topic-with-two-partitions 0          0               0          
 ```
 > bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic topic-with-two-partitions --from-beginning --group group-2
 ```
-- describe all the groups now
+- describe all the groups now (watch out CONSUMER-ID column!!)
 ```
 > bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --all-groups
 
