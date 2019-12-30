@@ -34,7 +34,7 @@ topic-with-one-partition
 ```
 > bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic topic-with-one-partition --from-beginning --group group-1
 ```
-### describe the group just created
+- describe the group just created
 ```
 > bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --group group-1
 
@@ -45,7 +45,7 @@ group-1         topic-with-one-partition 0          0               0           
 ```
 > bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic topic-with-one-partition --from-beginning --group group-1
 ```
-### adding new consumer with only one partition hasn't changed anything (number of consumer can't be greater than the numnber of partitions!)
+- adding new consumer with only one partition hasn't changed anything (number of consumer can't be greater than the numnber of partitions!)
 ```
 > bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --group group-1
 
