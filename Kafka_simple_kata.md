@@ -54,7 +54,6 @@ group-1         topic-with-one-partition 0          0               0           
 ```
 
 
-
 # Test 2
 ## Create a two-partition topic, create one consumer on a consumer group and then add a new consumer to the same group
 ## Expectation: creating a second consumer on the two-partition topic will be effectively accomplished by the Kafka server
@@ -78,6 +77,7 @@ GROUP           TOPIC                     PARTITION  CURRENT-OFFSET  LOG-END-OFF
 group-1         topic-with-two-partitions 0          0               0               0               consumer-group-1-1-6a7242f3-894d-465a-aaa9-d3c3860cb7c3 /127.0.0.1      consumer-group-1-1
 group-1         topic-with-two-partitions 1          0               0               0               consumer-group-1-1-6a7242f3-894d-465a-aaa9-d3c3860cb7c3 /127.0.0.1      consumer-group-1-1
 ```
+
 - create a new consumer on the same topic and let's make it join the group with id `group-1`
 ```
 > bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic topic-with-two-partitions --from-beginning --group group-1
@@ -90,7 +90,6 @@ GROUP           TOPIC                     PARTITION  CURRENT-OFFSET  LOG-END-OFF
 group-1         topic-with-two-partitions 1          0               0               0               consumer-group-1-1-c553a21a-3833-470f-8e7c-4a15cd88cbdc /127.0.0.1      consumer-group-1-1
 group-1         topic-with-two-partitions 0          0               0               0               consumer-group-1-1-6a7242f3-894d-465a-aaa9-d3c3860cb7c3 /127.0.0.1      consumer-group-1-1
 ```
-
 
 # Test 3 
 ## Create a new group on the same two-partition topic used before

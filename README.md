@@ -2,6 +2,6 @@ Please read the [official Kafka introduction](https://kafka.apache.org/intro) pa
 
 [Cheatsheet](https://github.com/francesco-losciale/cheat-sheets/blob/master/kafka_cluster_first_run.txt).
 
-[Simple kata](./Kafka_simple_kata.md)
+[Simple kata to play around consumers and partitions](./Kafka_simple_kata.md)
 
 [Some important notes](./notes.md)
