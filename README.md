@@ -29,7 +29,7 @@ bin/kafka-server-start.sh config/server.properties
 __consumer_offsets
 topic-with-one-partition
 
-### create a consumer for the topic with a group id `group-1`
+Create a consumer for the topic with a group id `group-1`
 > bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic topic-with-one-partition --from-beginning --group group-1
 
 ### describe the group just created
@@ -38,7 +38,7 @@ topic-with-one-partition
 GROUP           TOPIC                    PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                             HOST            CLIENT-ID
 group-1         topic-with-one-partition 0          0               0               0               consumer-group-1-1-22d36a91-7adb-474f-94bc-d37cdb40721b /127.0.0.1      consumer-group-1-1
 
-### create a new consumer on the same topic and let's make it join the group with id `group-1`
+Create a new consumer on the same topic and let's make it join the group with id `group-1`
 > bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic topic-with-one-partition --from-beginning --group group-1
 
 ### adding new consumer with only one partition hasn't changed anything (number of consumer can't be greater than the numnber of partitions!)
