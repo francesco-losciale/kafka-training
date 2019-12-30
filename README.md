@@ -57,7 +57,7 @@ group-1         topic-with-one-partition 0          0               0           
 
 # Test 2
 ## Create a two-partition topic, create one consumer on a consumer group and then add a new consumer to the same group
-## Expectation: creating a second consumer on the two-partition topic will effectively create a new consumer
+## Expectation: creating a second consumer on the two-partition topic will be effectively accomplished by the Kafka server
 ```
 > bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 2 --topic topic-with-two-partitions
 ```
