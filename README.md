@@ -9,3 +9,5 @@ Please read the [official Kafka introduction](https://kafka.apache.org/intro) pa
 Additional resources:
 
 [Don't Use Apache Kafka Consumer Groups the Wrong Way!](https://dzone.com/articles/dont-use-apache-kafka-consumer-groups-the-wrong-wa)
+
+[Spring Boot features](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-kafka)
