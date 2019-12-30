@@ -14,7 +14,7 @@ Create an integration test to play with :
 - Producers and consumers
 - Kafka as messaging system (event sourcing)
   - how to grant message order
-  - transactionality
+  - transactionality (https://www.baeldung.com/kafka-exactly-once)
   - non-idempotent consumer
 - Stream api to aggregate data in real time
 
