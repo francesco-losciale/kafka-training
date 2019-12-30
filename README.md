@@ -6,6 +6,22 @@ Please read the [official Kafka introduction](https://kafka.apache.org/intro) pa
 
 [Some important notes](./notes.md)
 
+--------------------------------------------------------------------------------------------------
+TODO
+
+Create an integration test to play with :
+
+- Producers and consumers
+- Kafka as messaging system (event sourcing)
+  - how to grant message order
+  - transactionality
+  - non-idempotent consumer
+- Stream api to aggregate data in real time
+
+--------------------------------------------------------------------------------------------------
+
+
+
 Additional resources:
 
 [Don't Use Apache Kafka Consumer Groups the Wrong Way!](https://dzone.com/articles/dont-use-apache-kafka-consumer-groups-the-wrong-wa)
