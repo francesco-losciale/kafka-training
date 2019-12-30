@@ -53,3 +53,40 @@ GROUP           TOPIC                    PARTITION  CURRENT-OFFSET  LOG-END-OFFS
 group-1         topic-with-one-partition 0          0               0               0               consumer-group-1-1-22d36a91-7adb-474f-94bc-d37cdb40721b /127.0.0.1      consumer-group-1-1
 ```
 
+
+
+# Test 2
+## Create a two-partition topic, create one consumer on a consumer group and then add a new consumer to the same group
+## Expectation: creating a second consumer on the two-partition topic will effectively create a new consumer
+```
+> bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 2 --topic topic-with-two-partitions
+```
+```
+> bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+__consumer_offsets
+topic-with-two-partitions
+```
+- create a consumer for the topic with a group id `group-1`
+```
+> bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic topic-with-two-partitions --from-beginning --group group-1
+```
+- describe the group just created
+```
+> bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --group group-1
+
+GROUP           TOPIC                     PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                             HOST            CLIENT-ID
+group-1         topic-with-two-partitions 0          0               0               0               consumer-group-1-1-6a7242f3-894d-465a-aaa9-d3c3860cb7c3 /127.0.0.1      consumer-group-1-1
+group-1         topic-with-two-partitions 1          0               0               0               consumer-group-1-1-6a7242f3-894d-465a-aaa9-d3c3860cb7c3 /127.0.0.1      consumer-group-1-1
+```
+- create a new consumer on the same topic and let's make it join the group with id `group-1`
+```
+> bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic topic-with-two-partitions --from-beginning --group group-1
+```
+- describe the group again, you can see now that the consumer-id is changed for the partition 1, partitions have been rebalanced now across the consumers of the group
+```
+> bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --group group-1
+
+GROUP           TOPIC                     PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                             HOST            CLIENT-ID
+group-1         topic-with-two-partitions 1          0               0               0               consumer-group-1-1-c553a21a-3833-470f-8e7c-4a15cd88cbdc /127.0.0.1      consumer-group-1-1
+group-1         topic-with-two-partitions 0          0               0               0               consumer-group-1-1-6a7242f3-894d-465a-aaa9-d3c3860cb7c3 /127.0.0.1      consumer-group-1-1
+```
