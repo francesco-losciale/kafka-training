@@ -1,1 +1,1 @@
-Please read the [official Kafka introduction](https://kafka.apache.org/intro) page before trying the following kata.
+Please read the [official Kafka introduction](https://kafka.apache.org/intro) page before practicing the following kata.
