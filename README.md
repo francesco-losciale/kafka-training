@@ -90,3 +90,31 @@ GROUP           TOPIC                     PARTITION  CURRENT-OFFSET  LOG-END-OFF
 group-1         topic-with-two-partitions 1          0               0               0               consumer-group-1-1-c553a21a-3833-470f-8e7c-4a15cd88cbdc /127.0.0.1      consumer-group-1-1
 group-1         topic-with-two-partitions 0          0               0               0               consumer-group-1-1-6a7242f3-894d-465a-aaa9-d3c3860cb7c3 /127.0.0.1      consumer-group-1-1
 ```
+
+
+# Test 3 
+## Create a new group on the same two-partition topic used before
+## Expectation: both the partitions will be assigned to the single consumer of the new group
+
+- create a new consumer on the same topic that belongs to a different consumer group `group-2`
+```
+> bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic topic-with-two-partitions --from-beginning --group group-2
+```
+- describe all the groups now
+```
+> bin/kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --all-groups
+
+GROUP           TOPIC                     PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                             HOST            CLIENT-ID
+group-1         topic-with-two-partitions 1          0               0               0               consumer-group-1-1-c553a21a-3833-470f-8e7c-4a15cd88cbdc /127.0.0.1      consumer-group-1-1
+group-1         topic-with-two-partitions 0          0               0               0               consumer-group-1-1-6a7242f3-894d-465a-aaa9-d3c3860cb7c3 /127.0.0.1      consumer-group-1-1
+
+GROUP           TOPIC                     PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                             HOST            CLIENT-ID
+group-2         topic-with-two-partitions 0          0               0               0               consumer-group-2-1-c1ef8e6e-1f12-4257-ba1a-9112e00af667 /127.0.0.1      consumer-group-2-1
+group-2         topic-with-two-partitions 1          0               0               0               consumer-group-2-1-c1ef8e6e-1f12-4257-ba1a-9112e00af667 /127.0.0.1      consumer-group-2-1
+```
+
+
+# Clean up
+```
+> bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic 'topic-.*'
+```
